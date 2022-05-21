@@ -1,0 +1,63 @@
+create a CLI/ shell that implements the following:
+When you enter the command LIST it lists the contents of the current directory
+The ADD command will add the following two numbers together and provide the result
+The HELP command provides a list of commands available
+The EXIT command exits the shell
+
+
+import os
+import subprocess
+
+
+def execute_commands(command):
+    try:
+        subprocess.run(command.split())
+    except Exception:
+        print("psh: command not found: {}".format(command))
+
+def psh_help():
+    print("help, list, add, exit")
+
+def psh_list():
+    print(os.listdir())
+
+def psh_add(command):
+    nums = command.split()
+    print("the total of first two numbers :" )
+    print(int(nums[1]) + int(nums[2]))
+    
+    
+
+def main():
+    while True:
+        command = input("CMD: ")
+        if command == "list":
+            psh_list()
+        if command == "help":
+            psh_help()
+        elif command.startswith('add'):
+            psh_add(command)
+        elif command == 'exit':
+            break
+        else:
+            execute_commands(command)
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+What are the two main security vulnerabilities with your shell?
+data injection
+What is one recommendation you would make to increase the security of the shell?
+data input validation
+Add a section to your e-portfolio that provides a (pseudo)code example of
+changes you would make to the shell to improve its security?
+# Test for only numeric characters   
+ nums= command.split()
+            try:
+                print(int nums[1]) + int nums[2]))
+            except:
+                print("Only numbers can be added")
+
